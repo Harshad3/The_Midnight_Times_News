@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Midnight Times - News Search</title>
+</head>
+<body>
+<a href="{% url 'logout' %}">Logout</a> <br>
+<a href="{% url 'history' %}">View Search History</a>
+    <h1>News Search</h1>
+
+    <form method="POST" action="{% url 'index' %}">
+        {% csrf_token %}
+        <label for="keyword">Enter Keyword: </label>
+        <input type="text" name="keyword" required>
+        <button type="submit">Search</button>
+    </form>
+
+
+    {% if articles %}
+        <h2>Search Results</h2>
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.description }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</body>
+</html>

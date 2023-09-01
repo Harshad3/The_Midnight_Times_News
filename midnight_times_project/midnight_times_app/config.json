@@ -1,0 +1,3 @@
+{"refresh_threshold_minutes": 15,
+"NEWS_API_KEY": "<Your_API_Key>",
+"news_api_url": "https://newsapi.org/v2/everything"}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="20;url={% url 'history' %}">
+    <title>Midnight Times - Search History</title>
+</head>
+<body>
+    <form action="{% url 'history' %}" method="get">
+<!--        <input type="hidden" name="refresh" value="True">
+        <input type="submit" value="Refersh All Articles" /> -->
+        <button type="submit" name="refresh" value="True">Refresh All Articles</button>
+    </form>
+    <a href="{% url 'logout' %}">Logout</a>
+    <br>
+    <a href="{% url 'index' %}">Back to Search</a>
+    <h1>Search History</h1>
+
+
+    {% for keyword, articles in history.items %}
+    <h2>{{ keyword }} - {{ articles.0.timestamp }}</h2>
+    <ul>
+        {% for article in articles %}
+        <li>{{ article.publishedAt }} : - <img src="{{ article.urlToImage }}" width="50" height="60"
+                                               alt="{{ article.id }}"/> {{ article.title }}<a
+                href="{{ article.url }}" target="_blank">Go to article</a></li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</body>
+</html>
